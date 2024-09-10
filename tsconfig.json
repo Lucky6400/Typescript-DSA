@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "strictPropertyInitialization": false,
+    "target": "ES5",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  }
+}
