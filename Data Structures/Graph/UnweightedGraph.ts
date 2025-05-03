@@ -29,24 +29,18 @@ class UnweightedGraph<T> {
 
     // Remove a vertex and all its edges
     removeVertex(vertex: T): void {
-        if (!this.vertices.has(vertex)) {
-            return;
-        }
+        if (!this.vertices.has(vertex)) return;
 
-        // Remove all edges pointing to this vertex
-        for (const [v, edges] of this.vertices) {
+        for (const [_, edges] of this.vertices) {
             edges.delete(vertex);
         }
 
-        // Remove the vertex and its edges
         this.vertices.delete(vertex);
     }
 
     // Remove an edge between two vertices
     removeEdge(source: T, destination: T): void {
-        if (!this.vertices.has(source) || !this.vertices.has(destination)) {
-            return;
-        }
+        if (!this.vertices.has(source) || !this.vertices.has(destination)) return;
 
         this.vertices.get(source)!.delete(destination);
         if (!this.isDirected) {
@@ -162,11 +156,11 @@ class UnweightedGraph<T> {
 }
 
 // Example usage:
-// const graph = new UnweightedGraph<number>();
-// graph.addEdge(1, 2);
-// graph.addEdge(2, 3);
-// graph.addEdge(3, 1);
-// console.log(graph.getVertices()); // [1, 2, 3]
-// console.log(graph.getEdges()); // [[1, 2], [2, 3], [3, 1]]
-// console.log(graph.bfs(1)); // [1, 2, 3]
-// console.log(graph.dfs(1)); // [1, 2, 3] 
+const graph = new UnweightedGraph<number>();
+graph.addEdge(1, 2);
+graph.addEdge(2, 3);
+graph.addEdge(3, 1);
+console.log(graph.getVertices()); // [1, 2, 3]
+console.log(graph.getEdges()); // [[1, 2], [2, 3], [3, 1]]
+console.log(graph.bfs(1)); // [1, 2, 3]
+console.log(graph.dfs(1)); // [1, 2, 3] 

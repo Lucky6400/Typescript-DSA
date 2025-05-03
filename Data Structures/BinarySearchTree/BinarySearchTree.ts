@@ -1,7 +1,7 @@
-class TreeNode<T> {
+class SearchTreeNode<T> {
     data: T;
-    left: TreeNode<T> | null;
-    right: TreeNode<T> | null;
+    left: SearchTreeNode<T> | null;
+    right: SearchTreeNode<T> | null;
 
     constructor(data: T) {
         this.data = data;
@@ -11,7 +11,7 @@ class TreeNode<T> {
 }
 
 class BinarySearchTree<T> {
-    private root: TreeNode<T> | null;
+    private root: SearchTreeNode<T> | null;
     private compare: (a: T, b: T) => number;
 
     constructor(compareFunction: (a: T, b: T) => number = (a, b) => {
@@ -25,14 +25,14 @@ class BinarySearchTree<T> {
 
     // Insert a new node
     insert(data: T): void {
-        const newNode = new TreeNode(data);
+        const newNode = new SearchTreeNode(data);
 
         if (!this.root) {
             this.root = newNode;
             return;
         }
 
-        const insertNode = (node: TreeNode<T>, newNode: TreeNode<T>): void => {
+        const insertNode = (node: SearchTreeNode<T>, newNode: SearchTreeNode<T>): void => {
             if (this.compare(newNode.data, node.data) < 0) {
                 if (node.left === null) {
                     node.left = newNode;
@@ -53,7 +53,7 @@ class BinarySearchTree<T> {
 
     // Search for a node
     search(data: T): boolean {
-        const searchNode = (node: TreeNode<T> | null, data: T): boolean => {
+        const searchNode = (node: SearchTreeNode<T> | null, data: T): boolean => {
             if (node === null) {
                 return false;
             }
@@ -74,7 +74,7 @@ class BinarySearchTree<T> {
 
     // Remove a node
     remove(data: T): void {
-        const findMin = (node: TreeNode<T>): TreeNode<T> => {
+        const findMin = (node: SearchTreeNode<T>): SearchTreeNode<T> => {
             let current = node;
             while (current.left !== null) {
                 current = current.left;
@@ -82,7 +82,7 @@ class BinarySearchTree<T> {
             return current;
         };
 
-        const removeNode = (node: TreeNode<T> | null, data: T): TreeNode<T> | null => {
+        const removeNode = (node: SearchTreeNode<T> | null, data: T): SearchTreeNode<T> | null => {
             if (node === null) {
                 return null;
             }
@@ -125,7 +125,7 @@ class BinarySearchTree<T> {
     inorderTraversal(): T[] {
         const result: T[] = [];
         
-        const inorder = (node: TreeNode<T> | null) => {
+        const inorder = (node: SearchTreeNode<T> | null) => {
             if (node) {
                 inorder(node.left);
                 result.push(node.data);

@@ -1,6 +1,6 @@
-class Node<T> {
+class ListNode<T> {
     data: T;
-    next: Node<T> | null;
+    next: ListNode<T> | null;
 
     constructor(data: T) {
         this.data = data;
@@ -9,7 +9,7 @@ class Node<T> {
 }
 
 class LinkedList<T> {
-    private head: Node<T> | null;
+    private head: ListNode<T> | null;
     private size: number;
 
     constructor() {
@@ -19,7 +19,7 @@ class LinkedList<T> {
 
     // Add a new element to the end of the list
     append(data: T): void {
-        const newNode = new Node(data);
+        const newNode = new ListNode(data);
 
         if (!this.head) {
             this.head = newNode;
@@ -35,7 +35,7 @@ class LinkedList<T> {
 
     // Add a new element to the beginning of the list
     prepend(data: T): void {
-        const newNode = new Node(data);
+        const newNode = new ListNode(data);
         newNode.next = this.head;
         this.head = newNode;
         this.size++;
@@ -52,7 +52,7 @@ class LinkedList<T> {
             return true;
         }
 
-        const newNode = new Node(data);
+        const newNode = new ListNode(data);
         let current = this.head;
         let previous = null;
         let index = 0;
