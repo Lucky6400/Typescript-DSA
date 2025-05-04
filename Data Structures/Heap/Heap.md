@@ -1,6 +1,66 @@
 # Heap Data Structure
 
-A Heap is a specialized tree-based data structure that satisfies the heap property. In a min heap, for any given node I, the value of I is less than or equal to the values of its children. In a max heap, the value of I is greater than or equal to the values of its children.
+A Heap is a specialized tree-based data structure that satisfies the heap property. It is commonly implemented as a binary heap, which is a complete binary tree where each node's value is less than or equal to (in a min heap) or greater than or equal to (in a max heap) its children's values.
+
+## Implementation
+
+The Heap implementation in this project uses a PriorityQueue as its underlying data structure. This provides efficient operations for inserting and extracting elements while maintaining the heap property.
+
+### Classes
+
+1. `Heap<T>` - Base class that implements the core heap functionality using a PriorityQueue
+2. `MinHeap<T>` - Extends Heap to implement a min heap
+3. `MaxHeap<T>` - Extends Heap to implement a max heap
+
+## Methods
+
+### Core Operations
+
+- `insert(item: T): void` - Inserts a new element into the heap
+- `extract(): T | null` - Removes and returns the root element
+- `peek(): T | null` - Returns the root element without removing it
+- `size(): number` - Returns the number of elements in the heap
+- `isEmpty(): boolean` - Checks if the heap is empty
+- `clear(): void` - Removes all elements from the heap
+- `toArray(): T[]` - Returns an array representation of the heap
+- `buildHeap(array: T[]): void` - Builds a heap from an array
+
+## Time Complexity
+
+- Insertion: O(log n)
+- Extraction: O(log n)
+- Peek: O(1)
+- Build Heap: O(n)
+
+## Example Usage
+
+```typescript
+// Min Heap
+const minHeap = new MinHeap<number>();
+minHeap.insert(5);
+minHeap.insert(3);
+minHeap.insert(7);
+minHeap.insert(1);
+console.log(minHeap.extract()); // 1
+console.log(minHeap.peek()); // 3
+
+// Max Heap
+const maxHeap = new MaxHeap<number>();
+maxHeap.insert(5);
+maxHeap.insert(3);
+maxHeap.insert(7);
+maxHeap.insert(1);
+console.log(maxHeap.extract()); // 7
+console.log(maxHeap.peek()); // 5
+```
+
+## Common Use Cases
+
+1. Priority Queues
+2. Heap Sort
+3. Graph algorithms (Dijkstra's, Prim's)
+4. Finding kth largest/smallest elements
+5. Merge k sorted arrays
 
 ## Implementation Details
 
@@ -9,40 +69,6 @@ Our Heap implementation in TypeScript is a generic implementation that can funct
 ### Properties
 - `heap: T[]` - Array that stores the heap elements
 - `compare: (a: T, b: T) => number` - Comparison function for ordering elements
-
-### Methods
-
-1. `insert(item: T): void`
-   - Adds a new element to the heap
-   - Time Complexity: O(log n)
-
-2. `extract(): T | null`
-   - Removes and returns the root element
-   - Time Complexity: O(log n)
-
-3. `peek(): T | null`
-   - Returns the root element without removing it
-   - Time Complexity: O(1)
-
-4. `size(): number`
-   - Returns the number of elements
-   - Time Complexity: O(1)
-
-5. `isEmpty(): boolean`
-   - Checks if the heap is empty
-   - Time Complexity: O(1)
-
-6. `clear(): void`
-   - Removes all elements
-   - Time Complexity: O(1)
-
-7. `toArray(): T[]`
-   - Converts heap to array
-   - Time Complexity: O(n)
-
-8. `buildHeap(array: T[]): void`
-   - Builds a heap from an array
-   - Time Complexity: O(n)
 
 ### Helper Methods
 
@@ -65,28 +91,6 @@ Our Heap implementation in TypeScript is a generic implementation that can funct
    - `heapifyUp(): void`
    - `heapifyDown(): void`
    - `heapifyDownAt(index: number): void`
-
-## Example Usage
-
-```typescript
-// Min Heap
-const minHeap = new Heap<number>();
-minHeap.insert(5);
-minHeap.insert(3);
-minHeap.insert(7);
-minHeap.insert(1);
-console.log(minHeap.extract()); // 1
-console.log(minHeap.peek()); // 3
-
-// Max Heap
-const maxHeap = new Heap<number>((a, b) => b - a);
-maxHeap.insert(5);
-maxHeap.insert(3);
-maxHeap.insert(7);
-maxHeap.insert(1);
-console.log(maxHeap.extract()); // 7
-console.log(maxHeap.peek()); // 5
-```
 
 ## Common Applications
 
@@ -113,15 +117,6 @@ console.log(maxHeap.peek()); // 5
 3. Not stable (equal elements may change order)
 4. Complex implementation compared to arrays
 5. Cache performance issues
-
-## Time Complexity
-
-| Operation    | Time Complexity |
-|-------------|----------------|
-| Insert      | O(log n)      |
-| Extract     | O(log n)      |
-| Peek        | O(1)          |
-| Build Heap  | O(n)          |
 
 ## Space Complexity
 
