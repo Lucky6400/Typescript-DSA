@@ -4,5 +4,6 @@
     "target": "ESNext",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
-  }
+  },
+  "include": ["./*.ts"]
 }
